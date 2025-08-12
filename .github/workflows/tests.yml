@@ -29,10 +29,16 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-          cache: 'npm'
+          cache: 'pnpm' # Changed cache key to pnpm
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3 # Added pnpm setup
+        with:
+          version: 8
+          run_install: false # We'll run install manually
 
       - name: Install Node Dependencies
-        run: npm ci
+        run: pnpm install --frozen-lockfile # Changed from npm ci
 
       - name: Install Dependencies
         run: composer install --no-interaction --prefer-dist --optimize-autoloader
@@ -47,7 +53,7 @@ jobs:
         run: php artisan ziggy:generate
 
       - name: Build Assets
-        run: npm run build
+        run: pnpm run build # Changed from npm run build
 
       - name: Tests
         run: ./vendor/bin/phpunit
