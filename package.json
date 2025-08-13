@@ -12,6 +12,7 @@
     "devDependencies": {
         "@eslint/js": "^9.33.0",
         "@inertiajs/vue3": "^2.0.17",
+        "@primeuix/themes": "^1.2.3",
         "@tailwindcss/vite": "^4.1.11",
         "@types/node": "^24.2.1",
         "@vitejs/plugin-vue": "^6.0.1",
@@ -28,8 +29,9 @@
         "prettier": "^3.6.2",
         "prettier-plugin-organize-imports": "^4.2.0",
         "prettier-plugin-tailwindcss": "^0.6.14",
-        "reka-ui": "^2.4.1",
+        "primevue": "^4.3.7",
         "tailwindcss": "^4.1.11",
+        "tailwindcss-primeui": "^0.6.1",
         "typescript": "^5.9.2",
         "typescript-eslint": "^8.39.1",
         "vite": "^7.1.2",

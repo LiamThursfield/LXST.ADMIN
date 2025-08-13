@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import "tailwindcss-primeui";
 
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';
