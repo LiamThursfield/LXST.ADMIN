@@ -33,7 +33,7 @@ jobs:
       - name: Install Dependencies
         run: |
           composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
-          pnpm install # Changed from npm install
+          pnpm install
 
       - name: Run Pint
         run: vendor/bin/pint
@@ -42,13 +42,7 @@ jobs:
         run: vendor/bin/phpstan analyse
 
       - name: Format Frontend
-        run: pnpm run format # Changed from npm run format
+        run: pnpm run format
 
       - name: Lint Frontend
-        run: pnpm run lint # Changed from npm run lint
-
-      # - name: Commit Changes
-      #   uses: stefanzweifel/git-auto-commit-action@v5
-      #   with:
-      #     commit_message: fix code style
-      #     commit_options: '--no-verify'
+        run: pnpm run lint

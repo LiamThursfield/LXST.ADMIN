@@ -26,16 +26,14 @@ jobs:
           coverage: xdebug
 
       - name: Setup pnpm
-        uses: pnpm/action-setup@v3 # Added pnpm setup
+        uses: pnpm/action-setup@v3
         with:
           version: 8
-          run_install: false # We'll run install manually
-
-      - name: Install Node Dependencies
-        run: pnpm install --frozen-lockfile # Changed from npm ci
+          run_install: false # We'll run install manually after composer
 
       - name: Install Dependencies
         run: composer install --no-interaction --prefer-dist --optimize-autoloader
+             pnpm install
 
       - name: Copy Environment File
         run: cp .env.example .env
@@ -47,7 +45,7 @@ jobs:
         run: php artisan ziggy:generate
 
       - name: Build Assets
-        run: pnpm run build # Changed from npm run build
+        run: pnpm run build
 
       - name: Tests
         run: ./vendor/bin/phpunit
