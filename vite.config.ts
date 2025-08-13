@@ -1,5 +1,7 @@
+/* @ts-ignore */
 import vue from '@vitejs/plugin-vue';
 import laravel from 'laravel-vite-plugin';
+/* @ts-ignore */
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'vite';
 
