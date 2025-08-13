@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Head } from '@inertiajs/vue3';
-import ProgressBar from "primevue/progressbar"
+import ProgressBar from 'primevue/progressbar';
 </script>
 
 <template>
@@ -12,6 +12,5 @@ import ProgressBar from "primevue/progressbar"
             <h1 class="font-serif text-2xl font-bold tracking-widest lg:text-5xl">LXST.ADMIN</h1>
             <ProgressBar mode="indeterminate" class="mt-1 !h-2"></ProgressBar>
         </div>
-
     </div>
 </template>

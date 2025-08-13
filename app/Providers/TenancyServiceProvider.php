@@ -4,29 +4,26 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
-use Illuminate\Routing\Route;
-use Stancl\Tenancy\Jobs;
+use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Route as RouteFacade;
+use Illuminate\Support\ServiceProvider;
+use Stancl\JobPipeline\JobPipeline;
+use Stancl\Tenancy\Actions\CloneRoutesAsTenant;
 use Stancl\Tenancy\Events;
-use Stancl\Tenancy\ResourceSyncing;
+use Stancl\Tenancy\Jobs;
 use Stancl\Tenancy\Listeners;
 use Stancl\Tenancy\Middleware;
-use Stancl\JobPipeline\JobPipeline;
-use Illuminate\Support\Facades\Event;
-use Illuminate\Support\ServiceProvider;
-use Stancl\Tenancy\Actions\CloneRoutesAsTenant;
-use Stancl\Tenancy\Overrides\TenancyUrlGenerator;
-use Illuminate\Contracts\Database\Eloquent\Builder;
-use Illuminate\Support\Facades\Route as RouteFacade;
-use Stancl\Tenancy\Middleware\InitializeTenancyByPath;
-use Stancl\Tenancy\Middleware\InitializeTenancyByRequestData;
-use Stancl\Tenancy\Bootstrappers\Integrations\FortifyRouteBootstrapper;
+use Stancl\Tenancy\ResourceSyncing;
 
 class TenancyServiceProvider extends ServiceProvider
 {
     // By default, no namespace is used to support the callable array syntax.
     public static string $controllerNamespace = '';
 
-    public function events()
+    /**
+     * @return array<array<mixed>, array<mixed>>
+     */
+    public function events(): array
     {
         return [
             // Tenant events
@@ -168,10 +165,10 @@ class TenancyServiceProvider extends ServiceProvider
         //
     }
 
-    public function boot()
+    public function boot(): void
     {
         $this->bootEvents();
-//        $this->mapRoutes();
+        //        $this->mapRoutes();
 
         $this->makeTenancyMiddlewareHighestPriority();
         $this->overrideUrlInTenantContext();
@@ -189,7 +186,7 @@ class TenancyServiceProvider extends ServiceProvider
         // });
     }
 
-    protected function bootEvents()
+    protected function bootEvents(): void
     {
         foreach ($this->events() as $event => $listeners) {
             foreach ($listeners as $listener) {
@@ -202,7 +199,7 @@ class TenancyServiceProvider extends ServiceProvider
         }
     }
 
-    protected function mapRoutes()
+    protected function mapRoutes(): void
     {
         $this->app->booted(function () {
             if (file_exists(base_path('routes/tenant.php'))) {
@@ -248,7 +245,7 @@ class TenancyServiceProvider extends ServiceProvider
         $cloneRoutes->handle();
     }
 
-    protected function makeTenancyMiddlewareHighestPriority()
+    protected function makeTenancyMiddlewareHighestPriority(): void
     {
         // PreventAccessFromUnwantedDomains has even higher priority than the identification middleware
         $tenancyMiddleware = array_merge([Middleware\PreventAccessFromUnwantedDomains::class], config('tenancy.identification.middleware'));

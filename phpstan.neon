@@ -8,10 +8,11 @@ parameters:
         - app/
 
     # Level 10 is the highest level
-    level: 10
+    level: 8
 
 #    ignoreErrors:
 #        - '#PHPDoc tag @var#'
 #
-#    excludePaths:
-#        - ./*/*/FileToBeExcluded.php
+    excludePaths:
+        # Third party provider, so ignore
+        - app/Providers/TenancyServiceProvider.php

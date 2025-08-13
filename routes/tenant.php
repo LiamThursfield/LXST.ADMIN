@@ -26,7 +26,7 @@ Route::middleware([
 ])->group(function () {
     Route::get('/', function () {
         return Inertia::render('Welcome', [
-            'tenant' => fn () =>  tenant('name'),
+            'tenant' => fn () => tenant('name'),
         ]);
     });
 });
