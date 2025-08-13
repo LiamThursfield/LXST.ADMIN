@@ -13,9 +13,14 @@ class HandleInertiaRequests extends Middleware
      *
      * @see https://inertiajs.com/server-side-setup#root-template
      *
-     * @var string
+     * @param Request $request
+     *
+     * @return string
      */
-    protected $rootView = 'app';
+    public function rootView(Request $request): string
+    {
+        return tenant() ? 'tenant.app' : 'landlord.app';
+    }
 
     /**
      * Determines the current asset version.
