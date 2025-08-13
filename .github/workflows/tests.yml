@@ -32,8 +32,9 @@ jobs:
           run_install: false # We'll run install manually after composer
 
       - name: Install Dependencies
-        run: composer install --no-interaction --prefer-dist --optimize-autoloader
-             pnpm install
+        run: |
+          composer install --no-interaction --prefer-dist --optimize-autoloader
+          pnpm install
 
       - name: Copy Environment File
         run: cp .env.example .env
