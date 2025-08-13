@@ -1,3 +1,5 @@
+packages:
+  - '.' # This includes the root of the project
 onlyBuiltDependencies:
   - '@tailwindcss/oxide'
   - esbuild
