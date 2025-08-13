@@ -38,6 +38,9 @@ jobs:
       - name: Run Pint
         run: vendor/bin/pint
 
+      - name: Run PhpStan
+        run: vendor/bin/phpstan analyse
+
       - name: Format Frontend
         run: pnpm run format # Changed from npm run format
 
