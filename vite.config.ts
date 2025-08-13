@@ -1,7 +1,7 @@
-/* @ts-ignore */
+/* @ts-expect-error This seems to be purely an IDE error */
 import vue from '@vitejs/plugin-vue';
 import laravel from 'laravel-vite-plugin';
-/* @ts-ignore */
+/* @ts-expect-error This seems to be purely an IDE error */
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'vite';
 
