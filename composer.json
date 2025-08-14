@@ -16,6 +16,7 @@
         "inertiajs/inertia-laravel": "^2.0",
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.10.1",
+        "stancl/tenancy": "dev-master",
         "tightenco/ziggy": "^2.5"
     },
     "require-dev": {
@@ -80,6 +81,6 @@
             "php-http/discovery": true
         }
     },
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "prefer-stable": true
 }

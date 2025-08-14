@@ -40,7 +40,8 @@
         // "typeRoots": [],                                  /* Specify multiple folders that act like './node_modules/@types'. */
         "types": [
             "vite/client",
-            "./resources/js/types"
+            "./resources/landlord/js/types",
+            "./resources/tenant/js/types"
         ] /* Specify type package names to be included without being referenced in a source file. */,
         // "allowUmdGlobalAccess": true,                     /* Allow accessing UMD globals from modules. */
         // "moduleSuffixes": [],                             /* List of file name suffixes to search when resolving a module. */
@@ -118,9 +119,13 @@
         "skipLibCheck": true /* Skip type checking all .d.ts files. */
     },
     "include": [
-        "resources/js/**/*.ts",
-        "resources/js/**/*.d.ts",
-        "resources/js/**/*.tsx", 
-        "resources/js/**/*.vue"
+        "resources/landlord/js/**/*.ts",
+        "resources/landlord/js/**/*.d.ts",
+        "resources/landlord/js/**/*.tsx",
+        "resources/landlord/js/**/*.vue",
+        "resources/tenant/js/**/*.ts",
+        "resources/tenant/js/**/*.d.ts",
+        "resources/tenant/js/**/*.tsx",
+        "resources/tenant/js/**/*.vue"
     ]
 }

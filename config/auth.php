@@ -38,7 +38,24 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'tenant-users',
+        ],
+
+        'api' => [
+            'driver' => 'token',
+            'provider' => 'tenant-users',
+            'hash' => false,
+        ],
+
+        'landlord-web' => [
+            'driver' => 'session',
+            'provider' => 'landlord-users',
+        ],
+
+        'landlord-api' => [
+            'driver' => 'token',
+            'provider' => 'landlord-users',
+            'hash' => false,
         ],
     ],
 
@@ -60,9 +77,14 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        'tenant-users' => [
             'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', App\Models\User::class),
+            'model' => App\Models\Tenant\User::class,
+        ],
+
+        'landlord-users' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Landlord\User::class,
         ],
 
         // 'users' => [
@@ -91,8 +113,14 @@ return [
     */
 
     'passwords' => [
-        'users' => [
-            'provider' => 'users',
+        'tenant-users' => [
+            'provider' => 'tenant-users',
+            'table' => env('AUTH_PASSWORD_RESET_TOKEN_TABLE', 'password_reset_tokens'),
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'landlord-users' => [
+            'provider' => 'landlord-users',
             'table' => env('AUTH_PASSWORD_RESET_TOKEN_TABLE', 'password_reset_tokens'),
             'expire' => 60,
             'throttle' => 60,
