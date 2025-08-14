@@ -15,7 +15,7 @@ function buildLandlordRoutes(string|array $middleware, string $as, string $path,
     foreach (config('tenancy.identification.central_domains') as $index => $domain) {
         // Add the index to the route name if there is more than one central domain
         // Otherwise we cannot cache routes - the first domain should not include a number
-        $computedAs = ($index > 0) ? $as . '.' . $index . '.' : $as . '.';
+        $computedAs = ($index > 0) ? $as.'.'.$index.'.' : $as.'.';
 
         Route::middleware($middleware)
             ->domain($domain)
@@ -44,7 +44,7 @@ return Application::configure(basePath: dirname(__DIR__))
         // Append the inertia middleware to the web group
         $middleware->web(append: [
             HandleInertiaRequests::class,
-            AddLinkHeadersForPreloadedAssets::class
+            AddLinkHeadersForPreloadedAssets::class,
         ]);
 
         // Get the web and api groups, as we will be using those for tenant/landlord groups
@@ -54,7 +54,6 @@ return Application::configure(basePath: dirname(__DIR__))
 
         // Define the landlord middleware groups
         $middleware->group('landlord-web', $webMiddle);
-
 
         // Define the tenant middleware groups
 
