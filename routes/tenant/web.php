@@ -18,15 +18,8 @@ use Stancl\Tenancy\Middleware;
 |
 */
 
-Route::middleware([
-    'web',
-    Middleware\InitializeTenancyByDomain::class,
-    Middleware\PreventAccessFromUnwantedDomains::class,
-    Middleware\ScopeSessions::class,
-])->group(function () {
-    Route::get('/', function () {
-        return Inertia::render('Welcome', [
-            'tenant' => fn () => tenant('name'),
-        ]);
-    });
-});
+Route::get('/', function () {
+    return Inertia::render('Welcome', [
+        'tenant' => fn () => tenant('name'),
+    ]);
+})->name('home');
