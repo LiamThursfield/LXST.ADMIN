@@ -47,14 +47,14 @@ return [
             'hash' => false,
         ],
 
-        'landlord-web' => [
+        'central-web' => [
             'driver' => 'session',
-            'provider' => 'landlord-users',
+            'provider' => 'central-users',
         ],
 
-        'landlord-api' => [
+        'central-api' => [
             'driver' => 'token',
-            'provider' => 'landlord-users',
+            'provider' => 'central-users',
             'hash' => false,
         ],
     ],
@@ -82,9 +82,9 @@ return [
             'model' => App\Models\Tenant\User::class,
         ],
 
-        'landlord-users' => [
+        'central-users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Landlord\User::class,
+            'model' => App\Models\Central\User::class,
         ],
 
         // 'users' => [
@@ -119,8 +119,8 @@ return [
             'expire' => 60,
             'throttle' => 60,
         ],
-        'landlord-users' => [
-            'provider' => 'landlord-users',
+        'central-users' => [
+            'provider' => 'central-users',
             'table' => env('AUTH_PASSWORD_RESET_TOKEN_TABLE', 'password_reset_tokens'),
             'expire' => 60,
             'throttle' => 60,

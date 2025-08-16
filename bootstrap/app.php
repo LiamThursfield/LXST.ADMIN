@@ -11,7 +11,7 @@ use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
 use Stancl\Tenancy\Middleware\PreventAccessFromUnwantedDomains;
 use Stancl\Tenancy\Middleware\ScopeSessions;
 
-function buildLandlordRoutes(string|array $middleware, string $as, string $path, string $prefix = ''): void
+function buildCentralRoutes(string|array $middleware, string $as, string $path, string $prefix = ''): void
 {
     foreach (config('tenancy.identification.central_domains') as $index => $domain) {
         // Add the index to the route name if there is more than one central domain
@@ -29,10 +29,10 @@ function buildLandlordRoutes(string|array $middleware, string $as, string $path,
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
         using: function () {
-            buildLandlordRoutes(
-                'landlord-web',
-                Tenancy::LANDLORD_ROUTE_NAME_PREFIX,
-                'routes/landlord/web.php'
+            buildCentralRoutes(
+                'central-web',
+                Tenancy::CENTRAL_ROUTE_NAME_PREFIX,
+                'routes/central/web.php'
             );
 
             Route::middleware(['tenant-web'])
@@ -48,13 +48,13 @@ return Application::configure(basePath: dirname(__DIR__))
             AddLinkHeadersForPreloadedAssets::class,
         ]);
 
-        // Get the web and api groups, as we will be using those for tenant/landlord groups
+        // Get the web and api groups, as we will be using those for tenant/central groups
         $groups = $middleware->getMiddlewareGroups();
         $webMiddle = $groups['web'];
         $apiGroup = $groups['api'];
 
-        // Define the landlord middleware groups
-        $middleware->group('landlord-web', $webMiddle);
+        // Define the central middleware groups
+        $middleware->group('central-web', $webMiddle);
 
         // Define the tenant middleware groups
 

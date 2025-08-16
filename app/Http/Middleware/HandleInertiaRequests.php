@@ -15,7 +15,7 @@ class HandleInertiaRequests extends Middleware
      */
     public function rootView(Request $request): string
     {
-        return tenant() ? 'tenant.app' : 'landlord.app';
+        return tenant() ? 'tenant.app' : 'central.app';
     }
 
     /**
