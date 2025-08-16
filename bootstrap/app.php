@@ -1,5 +1,6 @@
 <?php
 
+use App\Facades\Tenancy;
 use App\Http\Middleware\HandleInertiaRequests;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -15,7 +16,7 @@ function buildLandlordRoutes(string|array $middleware, string $as, string $path,
     foreach (config('tenancy.identification.central_domains') as $index => $domain) {
         // Add the index to the route name if there is more than one central domain
         // Otherwise we cannot cache routes - the first domain should not include a number
-        $computedAs = ($index > 0) ? $as.'.'.$index.'.' : $as.'.';
+        $computedAs = ($index > 0) ? $as . $index.'.' : $as;
 
         Route::middleware($middleware)
             ->domain($domain)
@@ -30,12 +31,12 @@ return Application::configure(basePath: dirname(__DIR__))
         using: function () {
             buildLandlordRoutes(
                 'landlord-web',
-                'landlord',
+                Tenancy::LANDLORD_ROUTE_NAME_PREFIX,
                 'routes/landlord/web.php'
             );
 
             Route::middleware(['tenant-web'])
-                ->as('tenant.')
+                ->as(Tenancy::TENANT_ROUTE_NAME_PREFIX)
                 ->group(base_path('routes/tenant/web.php'));
         },
         commands: __DIR__.'/../routes/console.php',

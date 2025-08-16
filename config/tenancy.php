@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Facades\Tenancy;
 use App\Models\Tenant\Tenant;
 use Stancl\Tenancy\Bootstrappers;
 use Stancl\Tenancy\Enums\RouteMode;
@@ -121,7 +122,7 @@ return [
             Resolvers\PathTenantResolver::class => [
                 'tenant_parameter_name' => 'tenant',
                 'tenant_model_column' => null, // null = tenant key
-                'tenant_route_name_prefix' => 'tenant.',
+                'tenant_route_name_prefix' => Tenancy::TENANT_ROUTE_NAME_PREFIX,
                 'allowed_extra_model_columns' => [], // used with binding route fields
 
                 'cache' => false,
