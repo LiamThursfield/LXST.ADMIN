@@ -38,12 +38,12 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'tenant-users',
+            'provider' => 'users',
         ],
 
         'api' => [
             'driver' => 'token',
-            'provider' => 'tenant-users',
+            'provider' => 'users',
             'hash' => false,
         ],
 
@@ -77,7 +77,7 @@ return [
     */
 
     'providers' => [
-        'tenant-users' => [
+        'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\Tenant\User::class,
         ],
@@ -113,8 +113,8 @@ return [
     */
 
     'passwords' => [
-        'tenant-users' => [
-            'provider' => 'tenant-users',
+        'users' => [
+            'provider' => 'users',
             'table' => env('AUTH_PASSWORD_RESET_TOKEN_TABLE', 'password_reset_tokens'),
             'expire' => 60,
             'throttle' => 60,

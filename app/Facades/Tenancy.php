@@ -16,7 +16,7 @@ class Tenancy extends StanclTenancy
     /**
      * All tenant route names will be prefixed with this value
      */
-    public const string TENANT_ROUTE_NAME_PREFIX = 'tenant.';
+    public const string TENANT_ROUTE_NAME_PREFIX = '';
 
     /**
      * Returns true if the app is currently in the 'tenant' context
