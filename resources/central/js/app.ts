@@ -5,9 +5,9 @@ import { definePreset } from '@primeuix/themes';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import PrimeVue from 'primevue/config';
 import type { DefineComponent } from 'vue';
-
 import Aura from '@primeuix/themes/aura';
 import { createApp, h } from 'vue';
+import { ZiggyVue } from 'ziggy-js';
 
 const appName = import.meta.env.VITE_APP_NAME || 'LXST.ADMIN';
 
@@ -35,9 +35,13 @@ createInertiaApp({
     setup({ el, App, props, plugin }) {
         createApp({ render: () => h(App, props) })
             .use(plugin)
+            .use(ZiggyVue)
             .use(PrimeVue, {
                 theme: {
                     preset: LxstAdminPreset,
+                    options: {
+                        darkModeSelector: '.lxst-admin-dark'
+                    }
                 },
             })
             .mount(el);
