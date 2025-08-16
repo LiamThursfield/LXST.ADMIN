@@ -9,7 +9,7 @@ export default defineConfig({
     plugins: [
         laravel({
             input: [
-                'resources/landlord/js/app.ts',
+                'resources/central/js/app.ts',
                 'resources/tenant/js/app.ts',
             ],
             refresh: true,

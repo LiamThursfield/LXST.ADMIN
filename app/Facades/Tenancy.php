@@ -9,9 +9,9 @@ use Stancl\Tenancy\Facades\Tenancy as StanclTenancy;
 class Tenancy extends StanclTenancy
 {
     /**
-     * All landlord route names will be prefixed with this value
+     * All central route names will be prefixed with this value
      */
-    public const string LANDLORD_ROUTE_NAME_PREFIX = 'landlord.';
+    public const string CENTRAL_ROUTE_NAME_PREFIX = 'central.';
 
     /**
      * All tenant route names will be prefixed with this value
@@ -21,7 +21,7 @@ class Tenancy extends StanclTenancy
     /**
      * Returns true if the app is currently in the 'tenant' context
      * i.e. there is an active tenant.
-     * Otherwise, returns false, implying the app is in the 'landlord' context
+     * Otherwise, returns false, implying the app is in the 'central' context
      *
      * @return bool
      */
@@ -31,13 +31,13 @@ class Tenancy extends StanclTenancy
     }
 
     /**
-     * Returns true if the app is currently in the 'landlord' context
+     * Returns true if the app is currently in the 'central' context
      * i.e. there is not an active tenant.
      * Otherwise, returns false, implying the app is in the 'tenant' context
      *
      * @return bool
      */
-    public static function isLandlord(): bool
+    public static function isCentral(): bool
     {
         return tenant() === null;
     }
@@ -45,7 +45,7 @@ class Tenancy extends StanclTenancy
     /**
      * Returns true if the route(s) exist based on the current tenancy context
      *
-     * Route names should be passed in without the tenant/landlord prefix,
+     * Route names should be passed in without the tenant/central prefix,
      * as the prefix will be added based on the current tenancy context
      *
      * @param string|array<string> $name
@@ -55,7 +55,7 @@ class Tenancy extends StanclTenancy
     {
         $name = Arr::wrap($name);
 
-        $prefix = self::isTenant() ? self::TENANT_ROUTE_NAME_PREFIX : self::LANDLORD_ROUTE_NAME_PREFIX;
+        $prefix = self::isTenant() ? self::TENANT_ROUTE_NAME_PREFIX : self::CENTRAL_ROUTE_NAME_PREFIX;
         foreach ($name as $index => $item) {
             $name[$index] = $prefix.$item;
         }
