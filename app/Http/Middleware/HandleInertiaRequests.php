@@ -15,7 +15,7 @@ class HandleInertiaRequests extends Middleware
      */
     public function rootView(Request $request): string
     {
-        return tenant() ? 'tenant.app' : 'central.app';
+        return tenant() !== null ? 'tenant.app' : 'central.app';
     }
 
     /**
@@ -43,6 +43,8 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user(),
             ],
+            // TODO: be more specific about what tenant data is shared
+            'tenant' => tenant(),
             'ziggy' => [
                 ...(new Ziggy)->toArray(),
                 'location' => $request->url(),
