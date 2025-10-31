@@ -43,6 +43,21 @@ class Tenancy extends StanclTenancy
     }
 
     /**
+     * Returns the route name with the appropriate prefix based on the current tenancy context
+     *
+     * Route names should be passed in without the tenant/central prefix,
+     * as the prefix will be added based on the current tenancy context
+     *
+     * @param string $name
+     * @return string
+     */
+    public static function routeName(string $name): string
+    {
+        $prefix = self::isTenant() ? self::TENANT_ROUTE_NAME_PREFIX : self::CENTRAL_ROUTE_NAME_PREFIX;
+        return $prefix . $name;
+    }
+
+    /**
      * Returns true if the route(s) exist based on the current tenancy context
      *
      * Route names should be passed in without the tenant/central prefix,
