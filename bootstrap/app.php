@@ -50,11 +50,11 @@ return Application::configure(basePath: dirname(__DIR__))
 
         // Get the web and api groups, as we will be using those for tenant/central groups
         $groups = $middleware->getMiddlewareGroups();
-        $webMiddle = $groups['web'];
+        $webGroup = $groups['web'];
         $apiGroup = $groups['api'];
 
         // Define the central middleware groups
-        $middleware->group('central-web', $webMiddle);
+        $middleware->group('central-web', $webGroup);
 
         // Define the tenant middleware groups
 
@@ -64,7 +64,8 @@ return Application::configure(basePath: dirname(__DIR__))
             ScopeSessions::class,
         ];
 
-        $middleware->group('tenant-web', array_merge($webMiddle, $tenantMiddleware));
+        $middleware->group('tenant-web', array_merge($webGroup, $tenantMiddleware));
+        $middleware->group('tenant-api', array_merge($apiGroup, $tenantMiddleware));
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
