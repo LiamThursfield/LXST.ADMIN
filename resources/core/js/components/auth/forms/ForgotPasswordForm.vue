@@ -68,7 +68,7 @@ import {Link, useForm} from "@inertiajs/vue3";
 import {useAuthRoutes} from "@/core/js/composables";
 import RegisterPanel from "@/core/js/components/auth/panels/RegisterPanel.vue";
 
-const { getLoginRoute } = useAuthRoutes();
+const { getLoginRoute, getPasswordEmailRoute } = useAuthRoutes();
 
 defineProps<{
     status: string | null
@@ -80,6 +80,6 @@ const form = useForm({
 });
 
 const submit = () => {
-    form.post(route('central.password.request'));
+    form.post(getPasswordEmailRoute() as string);
 };
 </script>

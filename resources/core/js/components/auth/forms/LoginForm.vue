@@ -92,7 +92,7 @@ import RegisterPanel from "@/core/js/components/auth/panels/RegisterPanel.vue";
 
 const { getLoginStoreRoute, getPasswordRequestRoute, passwordRequestRouteExists } = useAuthRoutes();
 
-const props = defineProps<{
+defineProps<{
     status: string | null
 }>();
 

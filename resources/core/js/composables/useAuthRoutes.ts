@@ -1,6 +1,9 @@
 import {route} from 'ziggy-js';
+import {useTenant} from "@/core/js/composables/useTenant";
 
 export function useAuthRoutes() {
+    const { isTenant } = useTenant();
+
     const routes = {
         login: 'login',
         loginStore: 'login.store',
@@ -18,14 +21,20 @@ export function useAuthRoutes() {
     };
 
     const resolveRoute = (name: string): string | null => {
-        const centralName = `central.${name}`;
-        if (route().has(centralName)) {
-            return centralName;
+        // If there is not tenant, check for central routes
+        if (!isTenant.value) {
+            const centralName = `central.${name}`;
+            if (route().has(centralName)) {
+                return centralName;
+            }
+
+            return null;
         }
 
         if (route().has(name)) {
             return name;
         }
+
         return null;
     };
 
