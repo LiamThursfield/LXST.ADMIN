@@ -22,8 +22,6 @@ class Tenancy extends StanclTenancy
      * Returns true if the app is currently in the 'tenant' context
      * i.e. there is an active tenant.
      * Otherwise, returns false, implying the app is in the 'central' context
-     *
-     * @return bool
      */
     public static function isTenant(): bool
     {
@@ -34,17 +32,14 @@ class Tenancy extends StanclTenancy
      * Returns true if the app is currently in the 'central' context
      * i.e. there is not an active tenant.
      * Otherwise, returns false, implying the app is in the 'tenant' context
-     *
-     * @return bool
      */
     public static function isCentral(): bool
     {
         return tenant() === null;
     }
+
     /**
      * Returns the appropriate web guard name based on the current tenancy context
-     *
-     * @return string
      */
     public static function webGuard(): string
     {
@@ -53,8 +48,6 @@ class Tenancy extends StanclTenancy
 
     /**
      * Returns the appropriate api guard name based on the current tenancy context
-     *
-     * @return string
      */
     public static function apiGuard(): string
     {
@@ -63,8 +56,6 @@ class Tenancy extends StanclTenancy
 
     /**
      * Returns the appropriate user provider name based on the current tenancy context
-     *
-     * @return string
      */
     public static function userProvider(): string
     {
@@ -76,14 +67,12 @@ class Tenancy extends StanclTenancy
      *
      * Route names should be passed in without the tenant/central prefix,
      * as the prefix will be added based on the current tenancy context
-     *
-     * @param string $name
-     * @return string
      */
     public static function routeName(string $name): string
     {
         $prefix = self::isTenant() ? self::TENANT_ROUTE_NAME_PREFIX : self::CENTRAL_ROUTE_NAME_PREFIX;
-        return $prefix . $name;
+
+        return $prefix.$name;
     }
 
     /**
@@ -92,8 +81,7 @@ class Tenancy extends StanclTenancy
      * Route names should be passed in without the tenant/central prefix,
      * as the prefix will be added based on the current tenancy context
      *
-     * @param string|array<string> $name
-     * @return bool
+     * @param  string|array<string>  $name
      */
     public static function routeHas(string|array $name): bool
     {

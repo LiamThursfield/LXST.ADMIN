@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Facades\Tenancy;
 use App\Http\Controllers\Controller;
-use App\Models\Tenant\User;
 use App\Models\Central\User as CentralUser;
+use App\Models\Tenant\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;

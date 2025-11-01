@@ -17,13 +17,7 @@ class AuthRoute
     /**
      * Registers the desired authentication routes
      *
-     * @param bool $register
-     * @param bool $forgotPassword
-     * @param bool $verifyEmail
-     * @param bool $confirmPassword
-     * @param string $authMiddleware - should be overridden if you want to use a different auth middleware or apply a different guard
-     *
-     * @return void
+     * @param  string  $authMiddleware  - should be overridden if you want to use a different auth middleware or apply a different guard
      */
     public function route(
         bool $register = false,
@@ -31,8 +25,7 @@ class AuthRoute
         bool $verifyEmail = false,
         bool $confirmPassword = false,
         string $authMiddleware = 'auth',
-    ): void
-    {
+    ): void {
         Route::middleware('guest')->group(function () use ($register, $forgotPassword) {
             // Always register the login route, otherwise there is no reason to use this service
             Route::get('login', [AuthenticatedSessionController::class, 'create'])
@@ -70,7 +63,6 @@ class AuthRoute
                 ->name('logout');
             Route::get('logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->name('logout');
-
 
             if ($verifyEmail) {
                 Route::get('verify-email', EmailVerificationPromptController::class)

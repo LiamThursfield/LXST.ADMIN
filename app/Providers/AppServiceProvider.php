@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
- use App\Services\AuthRoute;
+use App\Services\AuthRoute;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +13,7 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->singleton(AuthRoute::class, function ($app) {
-            return new AuthRoute();
+            return new AuthRoute;
         });
     }
 

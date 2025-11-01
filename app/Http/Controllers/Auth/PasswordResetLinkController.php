@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Auth;
 
 use App\Facades\Tenancy;
 use App\Http\Controllers\Controller;
-use Illuminate\Auth\Passwords\PasswordBroker;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;

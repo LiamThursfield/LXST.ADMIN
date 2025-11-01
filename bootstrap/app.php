@@ -16,7 +16,7 @@ function buildCentralRoutes(string|array $middleware, string $as, string $path, 
     foreach (config('tenancy.identification.central_domains') as $index => $domain) {
         // Add the index to the route name if there is more than one central domain
         // Otherwise we cannot cache routes - the first domain should not include a number
-        $computedAs = ($index > 0) ? $as . $index.'.' : $as;
+        $computedAs = ($index > 0) ? $as.$index.'.' : $as;
 
         Route::middleware($middleware)
             ->domain($domain)
