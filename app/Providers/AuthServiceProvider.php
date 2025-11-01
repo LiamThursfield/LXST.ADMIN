@@ -5,7 +5,10 @@ namespace App\Providers;
 use App\Facades\Tenancy;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\URL;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -40,12 +43,14 @@ class AuthServiceProvider extends ServiceProvider
     protected function defineVerifyEmailCallback(): void
     {
         VerifyEmail::createUrlUsing(function ($notifiable) {
-            return url(route(
+            return URL::temporarySignedRoute(
                 Tenancy::routeName('verification.verify'),
+                Carbon::now()->addMinutes(Config::get('auth.verification.expire', 60)),
                 [
                     'id' => $notifiable->getKey(),
                     'hash' => sha1($notifiable->getEmailForVerification()),
-                ], false));
+                ]
+            );
         });
     }
 }
