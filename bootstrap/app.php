@@ -42,6 +42,9 @@ return Application::configure(basePath: dirname(__DIR__))
         commands: __DIR__.'/../routes/console.php',
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        // Ensure guests are redirected to the correct login page if they attempt to access a protected route
+        $middleware->redirectGuestsTo(fn () => route(Tenancy::routeName('login')));
+
         // Append the inertia middleware to the web group
         $middleware->web(append: [
             HandleInertiaRequests::class,
