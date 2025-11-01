@@ -1,7 +1,7 @@
 <template>
     <div
         v-if="registerRouteExists()"
-        class="bg-primary-100 flex flex-row justify-center mt-4 px-4 py-3 rounded-lg"
+        class="bg-primary-100 flex flex-row justify-center px-4 py-3 rounded-lg"
     >
         Not registered?
         <Link
