@@ -51,9 +51,24 @@ class Tenancy extends StanclTenancy
         return self::isTenant() ? 'web' : 'central-web';
     }
 
+    /**
+     * Returns the appropriate api guard name based on the current tenancy context
+     *
+     * @return string
+     */
     public static function apiGuard(): string
     {
         return self::isTenant() ? 'api' : 'central-api';
+    }
+
+    /**
+     * Returns the appropriate user provider name based on the current tenancy context
+     *
+     * @return string
+     */
+    public static function userProvider(): string
+    {
+        return self::isTenant() ? 'users' : 'central-users';
     }
 
     /**
