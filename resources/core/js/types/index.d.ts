@@ -7,8 +7,9 @@ export interface Auth {
 export type AppPageProps<T extends Record<string, unknown> = Record<string, unknown>> = T & {
     name: string;
     auth: Auth;
-    ziggy: Config & { location: string };
     status: ?string
+    ziggy: Config & { location: string };
+    tenant: ?Tenant
 };
 
 export interface User {
@@ -19,4 +20,10 @@ export interface User {
     email_verified_at: string | null;
     created_at: string;
     updated_at: string;
+}
+
+export interface Tenant {
+    id: string;
+    name: string;
+    data: null | any;
 }

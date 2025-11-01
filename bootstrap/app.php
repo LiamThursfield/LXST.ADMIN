@@ -42,6 +42,9 @@ return Application::configure(basePath: dirname(__DIR__))
         commands: __DIR__.'/../routes/console.php',
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        // Ensure guests are redirected to the correct login page if they attempt to access a protected route
+        $middleware->redirectGuestsTo(fn () => route(Tenancy::routeName('login')));
+
         // Append the inertia middleware to the web group
         $middleware->web(append: [
             HandleInertiaRequests::class,
@@ -50,11 +53,11 @@ return Application::configure(basePath: dirname(__DIR__))
 
         // Get the web and api groups, as we will be using those for tenant/central groups
         $groups = $middleware->getMiddlewareGroups();
-        $webMiddle = $groups['web'];
+        $webGroup = $groups['web'];
         $apiGroup = $groups['api'];
 
         // Define the central middleware groups
-        $middleware->group('central-web', $webMiddle);
+        $middleware->group('central-web', $webGroup);
 
         // Define the tenant middleware groups
 
@@ -64,7 +67,8 @@ return Application::configure(basePath: dirname(__DIR__))
             ScopeSessions::class,
         ];
 
-        $middleware->group('tenant-web', array_merge($webMiddle, $tenantMiddleware));
+        $middleware->group('tenant-web', array_merge($webGroup, $tenantMiddleware));
+        $middleware->group('tenant-api', array_merge($apiGroup, $tenantMiddleware));
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

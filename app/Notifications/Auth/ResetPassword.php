@@ -2,6 +2,7 @@
 
 namespace App\Notifications\Auth;
 
+use App\Facades\Tenancy;
 use Illuminate\Contracts\Routing\UrlGenerator;
 use Illuminate\Foundation\Application;
 use Illuminate\Notifications\Notifiable;
@@ -19,7 +20,7 @@ class ResetPassword extends \Illuminate\Auth\Notifications\ResetPassword
     {
         /** @param Notifiable $notifiable */
 
-        return url(route('password.reset', [
+        return url(route(Tenancy::routeName('password.reset'), [
             'token' => $this->token,
             'email' => $notifiable->getEmailForPasswordReset(),
         ], false));

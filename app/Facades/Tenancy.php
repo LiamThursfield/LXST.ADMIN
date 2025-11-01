@@ -41,6 +41,50 @@ class Tenancy extends StanclTenancy
     {
         return tenant() === null;
     }
+    /**
+     * Returns the appropriate web guard name based on the current tenancy context
+     *
+     * @return string
+     */
+    public static function webGuard(): string
+    {
+        return self::isTenant() ? 'web' : 'central-web';
+    }
+
+    /**
+     * Returns the appropriate api guard name based on the current tenancy context
+     *
+     * @return string
+     */
+    public static function apiGuard(): string
+    {
+        return self::isTenant() ? 'api' : 'central-api';
+    }
+
+    /**
+     * Returns the appropriate user provider name based on the current tenancy context
+     *
+     * @return string
+     */
+    public static function userProvider(): string
+    {
+        return self::isTenant() ? 'users' : 'central-users';
+    }
+
+    /**
+     * Returns the route name with the appropriate prefix based on the current tenancy context
+     *
+     * Route names should be passed in without the tenant/central prefix,
+     * as the prefix will be added based on the current tenancy context
+     *
+     * @param string $name
+     * @return string
+     */
+    public static function routeName(string $name): string
+    {
+        $prefix = self::isTenant() ? self::TENANT_ROUTE_NAME_PREFIX : self::CENTRAL_ROUTE_NAME_PREFIX;
+        return $prefix . $name;
+    }
 
     /**
      * Returns true if the route(s) exist based on the current tenancy context
