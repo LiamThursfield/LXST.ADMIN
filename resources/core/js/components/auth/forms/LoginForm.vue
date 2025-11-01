@@ -14,6 +14,7 @@
                     name="email"
                     class="w-full"
                     required
+                    type="email"
                     v-model="form.email"
                 />
                 <Message
