@@ -66,8 +66,12 @@
                     <Link :href="getPasswordRequestRoute() as string" >Forgot Password?</Link>
                 </Button>
             </div>
+
+            <register-panel />
         </form>
     </auth-card>
+
+
 </template>
 
 <script setup lang="ts">
@@ -76,6 +80,7 @@ import {Button, Checkbox, InputText, Message} from "primevue";
 import AuthCard from "@/core/js/components/auth/AuthCard.vue";
 import {Link, useForm} from "@inertiajs/vue3";
 import {useAuthRoutes} from "@/core/js/composables";
+import RegisterPanel from "@/core/js/components/auth/panels/RegisterPanel.vue";
 
 const { getLoginStoreRoute, getPasswordRequestRoute, passwordRequestRouteExists } = useAuthRoutes();
 

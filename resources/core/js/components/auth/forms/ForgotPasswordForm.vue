@@ -54,6 +54,8 @@
                     <Link :href="getLoginRoute() as string" >Return to sign in</Link>
                 </Button>
             </div>
+
+            <register-panel />
         </form>
     </auth-card>
 </template>
@@ -64,6 +66,7 @@ import {Button, InputText, Message} from "primevue";
 import AuthCard from "@/core/js/components/auth/AuthCard.vue";
 import {Link, useForm} from "@inertiajs/vue3";
 import {useAuthRoutes} from "@/core/js/composables";
+import RegisterPanel from "@/core/js/components/auth/panels/RegisterPanel.vue";
 
 const { getLoginRoute } = useAuthRoutes();
 
