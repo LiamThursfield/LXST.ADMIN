@@ -1,5 +1,5 @@
 <template>
-    <login-form />
+    <login-form :status="status" />
 </template>
 
 

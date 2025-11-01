@@ -12,7 +12,7 @@
             </template>
         </Card>
 
-        <div class="px-3 text-right text-white">
+        <div>
             <slot name="footer"/>
         </div>
     </div>

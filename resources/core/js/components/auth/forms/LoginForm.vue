@@ -6,7 +6,6 @@
             class="flex flex-col space-y-6 w-full"
             @submit.prevent="submit"
         >
-
             <div class="flex flex-col space-y-2">
                 <label for="email" class="pl-1">Email</label>
                 <InputText
@@ -69,9 +68,18 @@
 
             <register-panel />
         </form>
+
+        <template #footer>
+            <div
+                v-if="status != null && status.length > 0"
+                class="bg-white/10  flex flex-row justify-center px-4 py-3 rounded-lg text-sm text-white"
+            >
+                <p>
+                    {{ status }}
+                </p>
+            </div>
+        </template>
     </auth-card>
-
-
 </template>
 
 <script setup lang="ts">
@@ -84,12 +92,17 @@ import RegisterPanel from "@/core/js/components/auth/panels/RegisterPanel.vue";
 
 const { getLoginStoreRoute, getPasswordRequestRoute, passwordRequestRouteExists } = useAuthRoutes();
 
+const props = defineProps<{
+    status: string | null
+}>();
+
+
+
 const form = useForm({
     email: '',
     password: '',
     remember: false,
 });
-
 
 const submit = () => {
     form.post(getLoginStoreRoute() as string);
