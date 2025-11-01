@@ -41,6 +41,20 @@ class Tenancy extends StanclTenancy
     {
         return tenant() === null;
     }
+    /**
+     * Returns the appropriate web guard name based on the current tenancy context
+     *
+     * @return string
+     */
+    public static function webGuard(): string
+    {
+        return self::isTenant() ? 'web' : 'central-web';
+    }
+
+    public static function apiGuard(): string
+    {
+        return self::isTenant() ? 'api' : 'central-api';
+    }
 
     /**
      * Returns the route name with the appropriate prefix based on the current tenancy context
