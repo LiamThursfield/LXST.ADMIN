@@ -28,9 +28,11 @@
                 <label class="pl-1" for="email">Email</label>
                 <InputText
                     id="email"
-                    v-model="form.email"
+                    name="email"
                     class="w-full"
                     required
+                    type="email"
+                    v-model="form.email"
                 />
                 <Message
                     v-if="form.errors.hasOwnProperty('email')"
