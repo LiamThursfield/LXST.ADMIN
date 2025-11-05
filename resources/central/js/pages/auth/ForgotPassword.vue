@@ -4,7 +4,7 @@
 
 
 <script setup lang="ts">
-import AuthLayout from "@/central/js/layouts/AuthLayout.vue";
+import AuthLayout from "@/core/js/layouts/auth/AuthLayout.vue";
 import ForgotPasswordForm from "@/core/js/components/auth/forms/ForgotPasswordForm.vue";
 
 defineOptions({
