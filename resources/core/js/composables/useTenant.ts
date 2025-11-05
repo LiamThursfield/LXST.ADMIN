@@ -9,7 +9,7 @@ export function useTenant() {
 
     const isTenant = computed(() => tenant.value !== null);
 
-    const tenantName = computed(() => isTenant ? tenant.value!.name : null);
+    const tenantName = computed(() => isTenant.value ? tenant.value!.name : null);
 
     return {
         isTenant,

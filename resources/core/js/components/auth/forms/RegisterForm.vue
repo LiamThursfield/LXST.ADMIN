@@ -1,3 +1,26 @@
+<script setup lang="ts">
+
+import {Button, InputText, Message} from "primevue";
+import AuthCard from "@/core/js/components/auth/AuthCard.vue";
+import {Link, useForm} from "@inertiajs/vue3";
+import {useAuthRoutes} from "@/core/js/composables";
+
+const { getRegisterStoreRoute, getLoginRoute } = useAuthRoutes();
+
+const form = useForm({
+    email: '',
+    first_name: '',
+    last_name: '',
+    password: '',
+    password_confirmation: '',
+});
+
+
+const submit = () => {
+    form.post(getRegisterStoreRoute() as string);
+};
+</script>
+
 <template>
     <auth-card
         title="Create Your Account"
@@ -118,26 +141,3 @@
         </form>
     </auth-card>
 </template>
-
-<script setup lang="ts">
-
-import {Button, InputText, Message} from "primevue";
-import AuthCard from "@/core/js/components/auth/AuthCard.vue";
-import {Link, useForm} from "@inertiajs/vue3";
-import {useAuthRoutes} from "@/core/js/composables";
-
-const { getRegisterStoreRoute, getLoginRoute } = useAuthRoutes();
-
-const form = useForm({
-    email: '',
-    first_name: '',
-    last_name: '',
-    password: '',
-    password_confirmation: '',
-});
-
-
-const submit = () => {
-    form.post(getRegisterStoreRoute() as string);
-};
-</script>

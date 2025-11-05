@@ -1,3 +1,11 @@
+<script setup lang="ts">
+import {Card} from "primevue";
+
+defineProps<{
+    title: string
+}>();
+</script>
+
 <template>
     <div class="flex flex-col max-w-md space-y-3 w-full">
         <Card>
@@ -17,11 +25,3 @@
         </div>
     </div>
 </template>
-
-<script setup lang="ts">
-import {Card} from "primevue";
-
-defineProps<{
-    title: string
-}>();
-</script>

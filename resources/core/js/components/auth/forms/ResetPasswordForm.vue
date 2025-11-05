@@ -58,7 +58,7 @@
 
 <script setup lang="ts">
 import AuthCard from "@/core/js/components/auth/AuthCard.vue";
-import {Link, useForm} from "@inertiajs/vue3";
+import {useForm} from "@inertiajs/vue3";
 import {Button, InputText, Message} from "primevue";
 import {useAuthRoutes} from "@/core/js/composables";
 

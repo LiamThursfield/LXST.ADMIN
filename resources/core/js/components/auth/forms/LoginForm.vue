@@ -1,3 +1,30 @@
+<script setup lang="ts">
+
+import {Button, Checkbox, InputText, Message} from "primevue";
+import AuthCard from "@/core/js/components/auth/AuthCard.vue";
+import {Link, useForm} from "@inertiajs/vue3";
+import {useAuthRoutes} from "@/core/js/composables";
+import RegisterPanel from "@/core/js/components/auth/panels/RegisterPanel.vue";
+
+const { getLoginStoreRoute, getPasswordRequestRoute, passwordRequestRouteExists } = useAuthRoutes();
+
+defineProps<{
+    status: string | null
+}>();
+
+
+
+const form = useForm({
+    email: '',
+    password: '',
+    remember: false,
+});
+
+const submit = () => {
+    form.post(getLoginStoreRoute() as string);
+};
+</script>
+
 <template>
     <auth-card
         title="Welcome Back"
@@ -81,30 +108,3 @@
         </template>
     </auth-card>
 </template>
-
-<script setup lang="ts">
-
-import {Button, Checkbox, InputText, Message} from "primevue";
-import AuthCard from "@/core/js/components/auth/AuthCard.vue";
-import {Link, useForm} from "@inertiajs/vue3";
-import {useAuthRoutes} from "@/core/js/composables";
-import RegisterPanel from "@/core/js/components/auth/panels/RegisterPanel.vue";
-
-const { getLoginStoreRoute, getPasswordRequestRoute, passwordRequestRouteExists } = useAuthRoutes();
-
-defineProps<{
-    status: string | null
-}>();
-
-
-
-const form = useForm({
-    email: '',
-    password: '',
-    remember: false,
-});
-
-const submit = () => {
-    form.post(getLoginStoreRoute() as string);
-};
-</script>

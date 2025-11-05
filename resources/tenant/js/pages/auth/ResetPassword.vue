@@ -1,7 +1,3 @@
-<template>
-    <reset-password-form :email="email" :token="token"/>
-</template>
-
 <script setup lang="ts">
 import AuthLayout from "@/core/js/layouts/auth/AuthLayout.vue";
 import ResetPasswordForm from "@/core/js/components/auth/forms/ResetPasswordForm.vue";
@@ -15,3 +11,7 @@ defineProps<{
     token: string | null
 }>();
 </script>
+
+<template>
+    <reset-password-form :email="email" :token="token"/>
+</template>

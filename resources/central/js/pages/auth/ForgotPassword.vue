@@ -1,8 +1,3 @@
-<template>
-    <forgot-password-form :status="status" />
-</template>
-
-
 <script setup lang="ts">
 import AuthLayout from "@/core/js/layouts/auth/AuthLayout.vue";
 import ForgotPasswordForm from "@/core/js/components/auth/forms/ForgotPasswordForm.vue";
@@ -15,3 +10,7 @@ defineProps<{
     status: string | null
 }>();
 </script>
+
+<template>
+    <forgot-password-form :status="status" />
+</template>

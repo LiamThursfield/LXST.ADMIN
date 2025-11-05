@@ -1,3 +1,21 @@
+<script setup lang="ts">
+
+import AuthCard from "@/core/js/components/auth/AuthCard.vue";
+import { Link } from '@inertiajs/vue3'
+import {useAuthRoutes} from "@/core/js/composables";
+import {computed} from "vue";
+import {Message} from "primevue";
+
+const { getLogoutRoute, getVerificationSendRoute } = useAuthRoutes();
+
+const props = defineProps<{
+    status: string | null
+}>();
+
+const hasResentVerification = computed(() => props.status === 'verification-link-sent');
+
+</script>
+
 <template>
     <auth-card
         title="Verify Your Email"
@@ -42,23 +60,4 @@
             </div>
         </template>
     </auth-card>
-
 </template>
-
-<script setup lang="ts">
-
-import AuthCard from "@/core/js/components/auth/AuthCard.vue";
-import { Link } from '@inertiajs/vue3'
-import {useAuthRoutes} from "@/core/js/composables";
-import {computed} from "vue";
-import {Message} from "primevue";
-
-const { getLogoutRoute, getVerificationSendRoute } = useAuthRoutes();
-
-const props = defineProps<{
-    status: string | null
-}>();
-
-const hasResentVerification = computed(() => props.status === 'verification-link-sent');
-
-</script>

@@ -1,3 +1,27 @@
+<script lang="ts" setup>
+
+import {Button, InputText, Message} from "primevue";
+import AuthCard from "@/core/js/components/auth/AuthCard.vue";
+import {Link, useForm} from "@inertiajs/vue3";
+import {useAuthRoutes} from "@/core/js/composables";
+import RegisterPanel from "@/core/js/components/auth/panels/RegisterPanel.vue";
+
+const { getLoginRoute, getPasswordEmailRoute } = useAuthRoutes();
+
+defineProps<{
+    status: string | null
+}>();
+
+
+const form = useForm({
+    email: '',
+});
+
+const submit = () => {
+    form.post(getPasswordEmailRoute() as string);
+};
+</script>
+
 <template>
     <auth-card
         title="Forgot Password"
@@ -59,27 +83,3 @@
         </form>
     </auth-card>
 </template>
-
-<script lang="ts" setup>
-
-import {Button, InputText, Message} from "primevue";
-import AuthCard from "@/core/js/components/auth/AuthCard.vue";
-import {Link, useForm} from "@inertiajs/vue3";
-import {useAuthRoutes} from "@/core/js/composables";
-import RegisterPanel from "@/core/js/components/auth/panels/RegisterPanel.vue";
-
-const { getLoginRoute, getPasswordEmailRoute } = useAuthRoutes();
-
-defineProps<{
-    status: string | null
-}>();
-
-
-const form = useForm({
-    email: '',
-});
-
-const submit = () => {
-    form.post(getPasswordEmailRoute() as string);
-};
-</script>

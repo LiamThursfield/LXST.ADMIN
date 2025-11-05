@@ -1,3 +1,10 @@
+<script setup lang="ts">
+import {Link} from "@inertiajs/vue3";
+import {useAuthRoutes} from "@/core/js/composables";
+
+const { registerRouteExists, getRegisterRoute } = useAuthRoutes();
+</script>
+
 <template>
     <div
         v-if="registerRouteExists()"
@@ -12,10 +19,3 @@
         </Link>
     </div>
 </template>
-
-<script setup lang="ts">
-import {Link} from "@inertiajs/vue3";
-import {useAuthRoutes} from "@/core/js/composables";
-
-const { registerRouteExists, getRegisterRoute } = useAuthRoutes();
-</script>
