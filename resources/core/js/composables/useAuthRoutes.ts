@@ -1,8 +1,8 @@
 import {route} from 'ziggy-js';
-import {useTenant} from "@/core/js/composables/useTenant";
+import {useRoutes} from "@/core/js/composables/useRoutes";
 
 export function useAuthRoutes() {
-    const { isTenant } = useTenant();
+    const {resolveRouteName} = useRoutes();
 
     const routes = {
         login: 'login',
@@ -20,151 +20,133 @@ export function useAuthRoutes() {
         passwordConfirm: 'password.confirm',
     };
 
-    const resolveRoute = (name: string): string | null => {
-        // If there is not tenant, check for central routes
-        if (!isTenant.value) {
-            const centralName = `central.${name}`;
-            if (route().has(centralName)) {
-                return centralName;
-            }
-
-            return null;
-        }
-
-        if (route().has(name)) {
-            return name;
-        }
-
-        return null;
-    };
-
     // Login
     function loginRouteExists(): boolean {
-        return resolveRoute(routes.login) !== null;
+        return resolveRouteName(routes.login) !== null;
     }
 
     function getLoginRoute(): string | null {
-        const routeName = resolveRoute(routes.login);
+        const routeName = resolveRouteName(routes.login);
         return routeName ? route(routeName) : null;
     }
 
     // Login Store
     function loginStoreRouteExists(): boolean {
-        return resolveRoute(routes.loginStore) !== null;
+        return resolveRouteName(routes.loginStore) !== null;
     }
 
     function getLoginStoreRoute(): string | null {
-        const routeName = resolveRoute(routes.loginStore);
+        const routeName = resolveRouteName(routes.loginStore);
         return routeName ? route(routeName) : null;
     }
 
     // Logout
     function logoutRouteExists(): boolean {
-        return resolveRoute(routes.logout) !== null;
+        return resolveRouteName(routes.logout) !== null;
     }
 
     function getLogoutRoute(): string | null {
-        const routeName = resolveRoute(routes.logout);
+        const routeName = resolveRouteName(routes.logout);
         return routeName ? route(routeName) : null;
     }
 
     // Register
     function registerRouteExists(): boolean {
-        return resolveRoute(routes.register) !== null;
+        return resolveRouteName(routes.register) !== null;
     }
 
     function getRegisterRoute(): string | null {
-        const routeName = resolveRoute(routes.register);
+        const routeName = resolveRouteName(routes.register);
         return routeName ? route(routeName) : null;
     }
 
     // Register Store
     function registerStoreRouteExists(): boolean {
-        return resolveRoute(routes.registerStore) !== null;
+        return resolveRouteName(routes.registerStore) !== null;
     }
 
     function getRegisterStoreRoute(): string | null {
-        const routeName = resolveRoute(routes.registerStore);
+        const routeName = resolveRouteName(routes.registerStore);
         return routeName ? route(routeName) : null;
     }
 
     // Password Request
     function passwordRequestRouteExists(): boolean {
-        return resolveRoute(routes.passwordRequest) !== null;
+        return resolveRouteName(routes.passwordRequest) !== null;
     }
 
     function getPasswordRequestRoute(): string | null {
-        const routeName = resolveRoute(routes.passwordRequest);
+        const routeName = resolveRouteName(routes.passwordRequest);
         return routeName ? route(routeName) : null;
     }
 
     // Password Email
     function passwordEmailRouteExists(): boolean {
-        return resolveRoute(routes.passwordEmail) !== null;
+        return resolveRouteName(routes.passwordEmail) !== null;
     }
 
     function getPasswordEmailRoute(): string | null {
-        const routeName = resolveRoute(routes.passwordEmail);
+        const routeName = resolveRouteName(routes.passwordEmail);
         return routeName ? route(routeName) : null;
     }
 
     // Password Reset
     function passwordResetRouteExists(): boolean {
-        return resolveRoute(routes.passwordReset) !== null;
+        return resolveRouteName(routes.passwordReset) !== null;
     }
 
     function getPasswordResetRoute(params: any): string | null {
-        const routeName = resolveRoute(routes.passwordReset);
+        const routeName = resolveRouteName(routes.passwordReset);
         return routeName ? route(routeName, params) : null;
     }
 
     // Password Store
     function passwordStoreRouteExists(): boolean {
-        return resolveRoute(routes.passwordStore) !== null;
+        return resolveRouteName(routes.passwordStore) !== null;
     }
 
     function getPasswordStoreRoute(): string | null {
-        const routeName = resolveRoute(routes.passwordStore);
+        const routeName = resolveRouteName(routes.passwordStore);
         return routeName ? route(routeName) : null;
     }
 
     // Verification Notice
     function verificationNoticeRouteExists(): boolean {
-        return resolveRoute(routes.verificationNotice) !== null;
+        return resolveRouteName(routes.verificationNotice) !== null;
     }
 
     function getVerificationNoticeRoute(): string | null {
-        const routeName = resolveRoute(routes.verificationNotice);
+        const routeName = resolveRouteName(routes.verificationNotice);
         return routeName ? route(routeName) : null;
     }
 
     // Verification Verify
     function verificationVerifyRouteExists(): boolean {
-        return resolveRoute(routes.verificationVerify) !== null;
+        return resolveRouteName(routes.verificationVerify) !== null;
     }
 
     function getVerificationVerifyRoute(params: any): string | null {
-        const routeName = resolveRoute(routes.verificationVerify);
+        const routeName = resolveRouteName(routes.verificationVerify);
         return routeName ? route(routeName, params) : null;
     }
 
     // Verification Send
     function verificationSendRouteExists(): boolean {
-        return resolveRoute(routes.verificationSend) !== null;
+        return resolveRouteName(routes.verificationSend) !== null;
     }
 
     function getVerificationSendRoute(): string | null {
-        const routeName = resolveRoute(routes.verificationSend);
+        const routeName = resolveRouteName(routes.verificationSend);
         return routeName ? route(routeName) : null;
     }
 
     // Password Confirm
     function passwordConfirmRouteExists(): boolean {
-        return resolveRoute(routes.passwordConfirm) !== null;
+        return resolveRouteName(routes.passwordConfirm) !== null;
     }
 
     function getPasswordConfirmRoute(): string | null {
-        const routeName = resolveRoute(routes.passwordConfirm);
+        const routeName = resolveRouteName(routes.passwordConfirm);
         return routeName ? route(routeName) : null;
     }
 
