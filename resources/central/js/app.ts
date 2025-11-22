@@ -8,6 +8,7 @@ import type { DefineComponent } from 'vue';
 import Aura from '@primeuix/themes/aura';
 import { createApp, h } from 'vue';
 import { ZiggyVue } from 'ziggy-js';
+import ToastService from 'primevue/toastservice';
 
 const appName = import.meta.env.VITE_APP_NAME || 'LXST.ADMIN';
 
@@ -40,10 +41,11 @@ createInertiaApp({
                 theme: {
                     preset: LxstAdminPreset,
                     options: {
-                        darkModeSelector: '.lxst-admin-dark'
+                        darkModeSelector: '.app-dark',
                     }
                 },
             })
+            .use(ToastService)
             .mount(el);
     },
     progress: {

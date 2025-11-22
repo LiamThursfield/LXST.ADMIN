@@ -1,8 +1,10 @@
-@import 'tailwindcss';
-@import 'tailwindcss-primeui';
+@import '../../core/css/tailwind.css';
+@import 'primeicons/primeicons.css';
+@import '../../core/css/layout/layout.css';
 
 @source '../../../storage/framework/views/*.php';
 @source '../**/*.blade.php';
+@source '../**/*.vue';
 @source '../**/*.js';
 
 @theme {

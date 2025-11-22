@@ -5,7 +5,11 @@ export interface Auth {
 }
 
 export type AppPageProps<T extends Record<string, unknown> = Record<string, unknown>> = T & {
-    name: string;
+    app: {
+        name: string;
+        current_route_name: null|string,
+        menu_items: Array<MenuItem|MenuSeparator>
+    }
     auth: Auth;
     status: ?string
     ziggy: Config & { location: string };
@@ -26,4 +30,15 @@ export interface Tenant {
     id: string;
     name: string;
     data: null | any;
+}
+
+export interface MenuItem {
+    class?: string|null;
+    label: string;
+    icon?: string|null;
+    route_name?: string|null;
+    target?: string|null;
+    url?: string;
+
+    items?: Array<MenuItem>|null;
 }

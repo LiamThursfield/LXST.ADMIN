@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 use Inertia\Middleware;
 use Tighten\Ziggy\Ziggy;
 
@@ -39,7 +40,25 @@ class HandleInertiaRequests extends Middleware
     {
         return [
             ...parent::share($request),
-            'name' => config('app.name'),
+            'app' => [
+                'name' => config('app.name'),
+                'current_route_name' => Route::currentRouteName(),
+                'menu_items' => [
+                    // TODO, implement a navigation service provider that will generate the appropriate navigation
+                    // based on tenant && auth
+                    [
+                        'label' => 'Home',
+                        'items' => [
+                            [
+                                'label' => 'Dashboard',
+                                'url' => route('dashboard', [], false),
+                                'route_name' => 'dashboard',
+                                'icon' => 'pi pi-fw pi-home',
+                            ]
+                        ]
+                    ]
+                ]
+            ],
             'auth' => [
                 'user' => $request->user(),
             ],
