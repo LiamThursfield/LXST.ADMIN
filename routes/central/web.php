@@ -12,9 +12,9 @@ AuthRoute::route(
     authMiddleware: 'auth:central-web',
 );
 
-Route::get('/dashboard', function () {
+Route::get('/admin', function () {
     return Inertia::render('admin/Dashboard');
-})->middleware(['auth:central-web', 'verified:central.verification.notice'])->name('dashboard');
+})->middleware(['auth:central-web', 'verified:central.verification.notice'])->name('admin');
 
 Route::get('/', function () {
     return Inertia::render('Welcome', []);

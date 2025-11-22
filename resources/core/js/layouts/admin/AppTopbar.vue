@@ -16,7 +16,7 @@ const { resolveRouteName } = useRoutes();
             </button>
             <Link
                 class="layout-topbar-logo"
-                :href="route(resolveRouteName('dashboard') as string)"
+                :href="route(resolveRouteName('admin') as string)"
             >
                 <span>LXST.ADMIN</span>
             </Link>

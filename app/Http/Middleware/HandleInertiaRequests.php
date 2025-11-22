@@ -51,8 +51,8 @@ class HandleInertiaRequests extends Middleware
                         'items' => [
                             [
                                 'label' => 'Dashboard',
-                                'url' => route('dashboard', [], false),
-                                'route_name' => 'dashboard',
+                                'url' => route('admin', [], false),
+                                'route_name' => 'admin',
                                 'icon' => 'pi pi-fw pi-home',
                             ]
                         ]

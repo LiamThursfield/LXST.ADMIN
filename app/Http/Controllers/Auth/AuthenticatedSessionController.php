@@ -32,7 +32,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route(Tenancy::routeName('dashboard'), absolute: false));
+        return redirect()->intended(route(Tenancy::routeName('admin'), absolute: false));
     }
 
     /**

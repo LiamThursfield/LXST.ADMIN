@@ -14,7 +14,7 @@ class VerifyEmailController extends Controller
      */
     public function __invoke(EmailVerificationRequest $request): RedirectResponse
     {
-        $redirectUrl = route(Tenancy::routeName('dashboard'), absolute: false).'?verified=1';
+        $redirectUrl = route(Tenancy::routeName('admin'), absolute: false).'?verified=1';
 
         if ($request->user()?->hasVerifiedEmail()) {
             return redirect()->intended($redirectUrl);

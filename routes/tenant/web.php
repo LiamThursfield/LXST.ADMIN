@@ -24,9 +24,9 @@ AuthRoute::route(
     confirmPassword: true,
 );
 
-Route::get('/dashboard', function () {
+Route::get('/admin', function () {
     return [];
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified'])->name('admin');
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [

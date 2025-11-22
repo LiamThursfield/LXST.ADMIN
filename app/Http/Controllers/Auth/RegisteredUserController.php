@@ -55,6 +55,6 @@ class RegisteredUserController extends Controller
 
         Auth::guard(Tenancy::webGuard())->login($user);
 
-        return to_route(Tenancy::routeName('dashboard'));
+        return to_route(Tenancy::routeName('admin'));
     }
 }
